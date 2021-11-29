@@ -1,20 +1,29 @@
 .chess-blocks{
   ion-col{
     padding-bottom: 12%;
-    img{
+    ion-icon{
       position: absolute;
       left: 50%;
       top: 50%;
       transform: translate(-50%, -50%);
       width: 45%;
+      border: 2px solid #c2c2c2;
+      border-radius: 50px;
+      background: #c2c2c2;
     }
-    img.face-east{
+    ion-icon.black-pawn{
+      color: black;
+    }
+    ion-icon.white-pawn{
+      color: white !important;
+    }
+    ion-icon.face-east{
       transform: rotate(90deg) translate(-50%, 43%);
     }
-    img.face-south{
+    ion-icon.face-south{
       transform: rotate(180deg) translate(50%, 35%);
     }
-    img.face-west{
+    ion-icon.face-west{
       transform: rotate(-90deg) translate(45%, -50%);
     }
   }
