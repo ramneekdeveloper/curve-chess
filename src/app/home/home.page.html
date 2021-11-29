@@ -1,0 +1,117 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Chess Board
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">Chess Board</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <div id="container">
+    <div class='form-outer'>
+      <form [formGroup]='form'>
+        <ion-row>
+          <ion-col size="12">
+            <h2>Place</h2>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position='stacked'>X-axis</ion-label>
+              <ion-select mode='md' formControlName='xaxis' interface='action-sheet' placeholder='X-axis'>
+                <ion-select-option [value]='x' *ngFor='let x of [0,1,2,3,4,5,6,7]'>{{x}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position='stacked'>Y-axis</ion-label>
+              <ion-select mode='md' formControlName='yaxis' interface='action-sheet' placeholder='Y-axis'>
+                <ion-select-option [value]='y' *ngFor='let y of [0,1,2,3,4,5,6,7]'>{{y}}</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position='stacked'>Direction</ion-label>
+              <ion-select formControlName='direction' interface='action-sheet' placeholder='Direction'>
+                <ion-select-option [value]="Direction.NORTH">North</ion-select-option>
+                <ion-select-option [value]="Direction.SOUTH">South</ion-select-option>
+                <ion-select-option [value]="Direction.EAST">East</ion-select-option>
+                <ion-select-option [value]="Direction.WEST">West</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="6">
+            <ion-item>
+              <ion-label position='stacked'>Color</ion-label>
+              <ion-select formControlName='color' interface='action-sheet' placeholder='Color'>
+                <ion-select-option [value]="Color.WHITE">White</ion-select-option>
+                <ion-select-option [value]="Color.BLACK">Black</ion-select-option>
+              </ion-select>
+            </ion-item>
+          </ion-col>
+          <ion-col size="12">
+            <ion-item>
+              <ion-button [disabled]='!form.valid' type='submit' (click)='submit()'>Set Place</ion-button>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-button type='button'>Move</ion-button>
+            </ion-item>
+          </ion-col>
+
+          <ion-col size="3">
+            <ion-item>
+              <ion-button type='button'>Move 1</ion-button>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-button type='button'>Move 2</ion-button>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-button type='button'>Left</ion-button>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-button type='button'>Right</ion-button>
+            </ion-item>
+          </ion-col>
+          <ion-col size="3">
+            <ion-item>
+              <ion-button type='button'>Report</ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </form>
+    </div>
+    <ion-grid class="chess-blocks">
+      <ion-row *ngFor="let x of [7,6,5,4,3,2,1,0]">
+        <ion-col size="1.5" size-sm="1.5" size-md="1.5" *ngFor="let y of [0,1,2,3,4,5,6,7]"
+          [ngClass]="
+              {
+                'white': x%2 == y%2, 
+                'black': x%2 !== y%2 
+            }">
+          <img [ngClass]='{
+            "face-east": currentPlace.direction == Direction.EAST, 
+            "face-west": currentPlace.direction == Direction.WEST, 
+            "face-south": currentPlace.direction == Direction.SOUTH 
+            }' *ngIf="x == currentPlace.x && y == currentPlace.y" src='assets/images/pawn.png'>
+            <div class="red">{{currentPlace.x%2}} - {{currentPlace.y%2}}</div>
+            <div class="red">{{x%2}} - {{y%2}}</div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

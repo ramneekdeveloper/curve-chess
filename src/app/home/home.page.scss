@@ -1,0 +1,44 @@
+.chess-blocks{
+  ion-col{
+    padding-bottom: 12%;
+    img{
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 45%;
+    }
+    img.face-east{
+      transform: rotate(90deg) translate(-50%, 43%);
+    }
+    img.face-south{
+      transform: rotate(180deg) translate(50%, 35%);
+    }
+    img.face-west{
+      transform: rotate(-90deg) translate(45%, -50%);
+    }
+  }
+  .white{
+    background-color: #fff !important;
+  }
+  .black{
+    background-color: #000;
+  }
+}
+
+ion-grid{
+  border: 2px solid #c2c2c2;
+  margin: 20px auto;
+  padding: 0px;
+  width: 100%;
+  max-width: 800px;
+}
+
+.form-outer{
+  width: 100%;
+  max-width: 900px;
+  margin: auto;
+}
+.red{
+  color:red;
+}
